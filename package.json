@@ -1,0 +1,21 @@
+{
+  "name": "i8y",
+  "version": "1.0.0",
+  "description": "The last ip2country service you'll ever need.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "start": "NODE_ENV=production node index.js",
+    "test": "jest --runInBand"
+  },
+  "author": "Lev Zimin",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "csv-parse": "^5.5.6"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
