@@ -74,9 +74,36 @@ app.get('/v1/find-country', async (req, res) => {
     process.exit(1);
   }
 
-  app.listen(port, () => {
+  const server = app.listen(port, () => {
     console.log(`i8y listening on port ${port}`);
   });
+
+  // Graceful shutdown handling
+  const gracefulShutdown = async (signal) => {
+    if (geoLocator) {
+      try {
+        await geoLocator.dispose();
+        console.log('Geolocator disposed successfully');
+      } catch (err) {
+        console.error('Error disposing geolocator:', err);
+      }
+    }
+
+    server.close(() => {
+      console.log('HTTP server closed');
+      process.exit(0);
+    });
+
+    // Force exit after 10 seconds if graceful shutdown fails
+    setTimeout(() => {
+      console.error('Forced shutdown after timeout');
+      process.exit(1);
+    }, 10000);
+  };
+
+  // Handle various shutdown signals
+  process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+  process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 })();
 
 module.exports = app;
