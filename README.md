@@ -26,6 +26,7 @@ Example `.env` file:
 ```bash
 GEOLOCATION_DATABASE_TYPE=SimpleCsv
 SIMPLECSV_PATH=./data/ip2citycountry.csv
+CSV_FILE_RELOAD_INTERVAL_IN_MS=10000
 
 # Token Bucket Rate Limits
 TOKEN_BUCKET_REFILL_RATE_PER_SEC=0.2
