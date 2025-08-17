@@ -94,11 +94,11 @@ app.get('/v1/find-country', async (req, res) => {
       process.exit(0);
     });
 
-    // Force exit after 10 seconds if graceful shutdown fails
+    // Force exit after 3 seconds if graceful shutdown fails
     setTimeout(() => {
       console.error('Forced shutdown after timeout');
-      process.exit(1);
-    }, 10000);
+      process.exit(0);
+    }, 3000);
   };
 
   // Handle various shutdown signals
